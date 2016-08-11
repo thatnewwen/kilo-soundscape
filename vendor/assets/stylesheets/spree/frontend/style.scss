@@ -3,9 +3,30 @@
 }
 
 ul#products li {
-  clear: both;
+	margin-bottom: 20px;
+	display: flex;
+	text-align: left;
+
+}
+
+ul#products li .product-image {
+	border: none;
+	padding: 0px;
+}
+
+.product-image{
+ 
+  a {
+    width: 300px;
+
+    img{
+      width: 300px;
+      object-fit: cover;
+    }
+  }
 }
 
 ul#products li .product-image img {
-  height: 300px;
+  width: 300px;
 }
+
