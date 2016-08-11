@@ -53,17 +53,53 @@ body {
 
 .contact-title{
   text-align: left;
+  font-family: 'EB Garamond', serif;
+  color: $kilo-blue;
 }
 
 .contact-form{
+
+
   input{
     display: block;
-    padding: 5px 0;
+    padding: 10px;
     margin: 10px 0;
-    width: 250px;
+    width: 450px;
+    font-size: 20px;
+    border: 1px solid lightgray;
+    transition: border 1s ease;
+    font-family: 'Karla', sans-serif;
+
+  }
+
+  input:focus{
+    border: 1px solid $kilo-blue;
+    outline: none;
   }
 
   textarea{
-    width: 250px;
+    font-family: 'Karla', sans-serif;
+
+    border: 1px solid lightgray;
+    padding: 10px;
+    width: 450px;
+    font-size: 20px;
+    height: 150px;
+    transition: border 1s ease;
+
+  }
+
+  textarea:focus{
+    border: 1px solid $kilo-blue;
+    outline: none;
+  }
+
+  .submit-button{
+    font-family: 'Karla', sans-serif;
+
+    width: 200px;
+    text-transform: uppercase;
+    background: lightgray;
+    color: white;
   }
 }
