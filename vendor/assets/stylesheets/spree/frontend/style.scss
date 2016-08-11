@@ -1,0 +1,11 @@
+.container .column, .container .columns {
+  float: none;
+}
+
+ul#products li {
+  clear: both;
+}
+
+ul#products li .product-image img {
+  height: 300px;
+}

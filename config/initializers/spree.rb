@@ -52,11 +52,6 @@ Spree.config do |config|
   # )
 end
 
-Spree::Frontend::Config.configure do |config|
-  config.use_static_preferences!
-
-  config.locale = 'en'
-end
 
 Spree::Backend::Config.configure do |config|
   config.use_static_preferences!
