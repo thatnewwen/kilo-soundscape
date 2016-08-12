@@ -24,7 +24,8 @@ $(document).ready(function() {
       SC.stream('/tracks/' + trackId, function(sound) {
         let playing = false;
 
-        $('.track-name').html(trackName)
+        $('.track-name').html(trackName);
+        $('.track-name').attr('href', trackUrl);
 
         $('.radio').on('click', '#start', function(event) {
           event.preventDefault();
