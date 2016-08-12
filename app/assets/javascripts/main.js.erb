@@ -10,7 +10,11 @@ $(document).ready(function() {
       const randomNumber = Math.floor((Math.random() * trackLength) + 1);
 
       // Return track id of random track
+      track = response.data[randomNumber]
+      console.log(track)
       trackId = response.data[randomNumber].id
+      trackName = response.data[randomNumber].title
+      trackUrl = response.data[randomNumber].permalink_url
     })
     .then(function() {
       SC.initialize({
@@ -18,15 +22,25 @@ $(document).ready(function() {
       });
 
       SC.stream('/tracks/' + trackId, function(sound) {
+        let playing = false;
+
+        $('.track-name').html(trackName)
 
         $('.radio').on('click', '#start', function(event) {
-            event.preventDefault();
-            sound.play();
+          event.preventDefault();
+          if (playing === true) {
+            sound.pause();
+            playing = false;
+          } else {
+            sound.play()
+            playing = true;
+          }
         });
 
         $('.radio').on('click', '#stop', function(event) {
-            event.preventDefault();
-            sound.stop();
+          event.preventDefault();
+          sound.pause();
+          playing = false;
         });
       });
     })
