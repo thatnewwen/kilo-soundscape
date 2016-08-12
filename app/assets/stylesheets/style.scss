@@ -91,7 +91,8 @@ body {
   background: $kilo-blue;
   height: 50px;
   width: 100%;
-  padding-left: 130px;
+  padding-left: 90px;
+  border-top: 1px solid white;
 
   a {
     text-decoration: none;
@@ -102,15 +103,9 @@ body {
     }
   }
 
-  #start {
+  #play-pause {
     position: absolute;
     left: 30px;
-    top: 15px;
-  }
-
-  #stop {
-    position: absolute;
-    left: 65px;
     top: 15px;
   }
 

@@ -27,21 +27,17 @@ $(document).ready(function() {
         $('.track-name').html(trackName);
         $('.track-name').attr('href', trackUrl);
 
-        $('.radio').on('click', '#start', function(event) {
+        $('.radio').on('click', '#play-pause', function(event) {
           event.preventDefault();
           if (playing === true) {
             sound.pause();
             playing = false;
+            $(this).children('img').attr('src','assets/play.png');
           } else {
             sound.play()
             playing = true;
+            $(this).children('img').attr('src','assets/pause.png');
           }
-        });
-
-        $('.radio').on('click', '#stop', function(event) {
-          event.preventDefault();
-          sound.pause();
-          playing = false;
         });
       });
     })
