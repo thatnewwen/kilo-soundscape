@@ -47,7 +47,8 @@ body {
     text-align: center;
     z-index: 10;
     position: absolute;
-    top: -25px;
+    font-size: 18px;
+    top: -29px;
     left: 53%;
   }
 
@@ -84,4 +85,25 @@ body {
   }
 }
 
+.radio {
+  position: fixed;
+  bottom: 0;
+  background: $kilo-blue;
+  height: 50px;
+  width: 100%;
+
+  #start {
+    position: absolute;
+    left: 0;
+  }
+
+  #stop {
+    position: absolute;
+    left: 50px;
+  }
+
+  img {
+    height: 30px;
+  }
+}
 
