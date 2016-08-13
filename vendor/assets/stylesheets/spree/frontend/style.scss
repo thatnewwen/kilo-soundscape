@@ -6,6 +6,9 @@ ul#products li {
 	margin-bottom: 20px;
 	display: flex;
 	text-align: left;
+  width: 100%;
+  text-align: left;
+  align-items: center;
 
 }
 
@@ -22,6 +25,10 @@ ul#products li .product-image {
     img{
       width: 300px;
       object-fit: cover;
+    }
+
+    img:hover{
+      opacity: 0.6;
     }
   }
 }
