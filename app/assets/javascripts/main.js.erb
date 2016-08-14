@@ -1,33 +1,101 @@
+Track = function (trackId){
+  let currentTrack = '';
+
+  SC.initialize({
+    client_id: '<%= ENV['CLIENT_ID'] %>'
+  });
+
+  SC.stream("http://api.soundcloud.com/tracks/" + trackId, {onfinish: function(){
+    currentPlayingTrack.stop();
+    playing = false;
+    currentTrack = rotation.nextTrack();
+    currentPlayingTrack = new Track(currentTrack);
+    currentPlayingTrack.play();
+    playing = true;
+    $('#play-pause').children('img').attr('src','assets/pause.png');
+  }}, function(sound){
+    currentTrack = sound;
+  });
+
+  this.play = function() {
+    currentTrack.play();
+    playing = true;
+  };
+
+  this.pause = function() {
+    currentTrack.pause();
+    playing = false;
+  };
+
+  this.stop = function() {
+    currentTrack.stop();
+    playing = false;
+  };
+};
+
+Rotation = function(tracks) {
+  randomNumber = Math.floor((Math.random() * tracks.length));
+  
+  currentTrack = tracks[randomNumber];
+
+  this.currentTrack = function () {
+    $('.track-name').html(currentTrack.title);
+    $('.track-name').attr('href', currentTrack.permalink_url);
+    $('#soundcloud').attr('href', currentTrack.permalink_url);
+    return currentTrack;
+  };
+
+  this.nextTrack = function () {
+    randomNumber = Math.floor((Math.random() * tracks.length));
+    nextTrack = tracks[randomNumber];
+    nextTrackId = nextTrack.id;
+    currentTrack = nextTrackId;
+    $('.track-name').html(nextTrack.title);
+    $('.track-name').attr('href', nextTrack.permalink_url);
+    $('#soundcloud').attr('href', nextTrack.permalink_url);
+    return currentTrack
+  };
+};
+
 $(document).ready(function() {
-  const CLIENT_ID = '<%= ENV['CLIENT_ID'] %>';
+  
+  let fetchTracks = function () {
+    let request = $.ajax({
+      url: '/radio'
+    });
+    request.then((response) => {
+      tracks = response.tracks;
+      rotation = new Rotation(tracks);
+      currentTrack = rotation.currentTrack();
+      currentPlayingTrack = new Track(currentTrack.id);
+    }) 
+  };
 
-  axios.get(`https://api.soundcloud.com/users/14533601/tracks?client_id=${CLIENT_ID}`)
-    .then(function (response) {
-      // Store the length of the tracks
-      const trackLength = response.data.length;
+  playing = false;
 
-      // Pick a random number
-      const randomNumber = Math.floor((Math.random() * trackLength) + 1);
+  $('.radio').on('click', '#play-pause', function(event) {
+    event.preventDefault();
+    if (playing === true) {
+      currentPlayingTrack.pause();
+      playing = false;
+      $(this).children('img').attr('src','assets/play.png');
+    } else {
+      currentPlayingTrack.play();
+      playing = true;
+      $(this).children('img').attr('src','assets/pause.png');
+    }
+  });
 
-      // Return track id of random track
-      trackId = response.data[randomNumber].id
-    })
-    .then(function() {
-      SC.initialize({
-        client_id: '<%= ENV['CLIENT_ID'] %>'
-      });
+  $('.radio').on('click', '#next-song', function(event) {
+    event.preventDefault();
+    currentPlayingTrack.stop();
+    playing = false;
+    currentTrack = rotation.nextTrack();
+    currentPlayingTrack = new Track(currentTrack);
+    currentPlayingTrack.play();
+    playing = true;
+    $('#play-pause').children('img').attr('src','assets/pause.png');
+  });
 
-      SC.stream('/tracks/' + trackId, function(sound) {
-
-        $('.radio').on('click', '#start', function(event) {
-            event.preventDefault();
-            sound.play();
-        });
-
-        $('.radio').on('click', '#stop', function(event) {
-            event.preventDefault();
-            sound.stop();
-        });
-      });
-    })
+  fetchTracks();
 });
