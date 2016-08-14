@@ -1,5 +1,7 @@
 $kilo-blue: #21409A;
 $kilo-cream: #EEEBE4;
+$breakpoint: 600px;
+$breakpoint-small: 400px;
 
 body {
   margin: 0;
@@ -10,12 +12,33 @@ body {
 }
 
 .logo {
+  background: url(logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
   z-index: 999;
+  width: 100%;
   position: fixed;
   height: 60%;
   max-height: 300px;
   left: 55px;
   top: 200px;
+
+  @media screen and (max-width: $breakpoint) {
+    background: url(logo-mobile.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    position: relative;
+    height: 15%;
+    min-height: 120px;
+    max-height: 300px;
+    left: 15px;
+    top: 70px;
+  }
+
+  @media screen and (max-width: $breakpoint-small) {
+    margin-bottom: 30px;
+  }
 }
 
 .navbar {
@@ -68,6 +91,13 @@ body {
   left: 0;
   right: 0;
   top: 14vh;
+  
+  @media screen and (max-width: $breakpoint) {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+  }
 
   .new {
     text-transform: uppercase;
@@ -78,6 +108,10 @@ body {
     font-size: 18px;
     top: -29px;
     left: 53%;
+    
+    @media screen and (max-width: $breakpoint) {
+      left: 47%;
+    }
   }
 
   img {
@@ -85,6 +119,13 @@ body {
     position: absolute;
     max-width: 700px;
     left: 30%;
+
+    @media screen and (max-width: $breakpoint) {
+      width: 90%;
+      position: absolute;
+      max-width: 700px;
+      left: 5%;
+    }
   }
 }
 
@@ -211,6 +252,75 @@ body {
 
   .submit-button:hover{
     background: #c5c3c3;
+  }
+}
+
+.about-container {
+  margin-bottom: 70px;
+  color: $kilo-blue;
+  width: 65%;
+  position: absolute;
+  right: 0px;
+  top: 10vh;
+
+  @media screen and (max-width: $breakpoint) {
+    width: 100%;
+    margin-bottom: 70px;
+    margin: 0 auto 70px auto;
+    position: absolute;
+    top: 180px;
+    left: 0;
+  }
+
+  h1 {
+    text-align: center;
+
+  }
+
+  .artist-info {
+    width: 65%;
+    text-align: justify;
+
+    @media screen and (max-width: $breakpoint) {
+      width: 75%;
+      margin: auto;
+    }
+  }
+
+  .artist-about {
+    width: 85%;
+    margin: 20px auto;
+
+    @media screen and (max-width: $breakpoint) {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  .artist-sites {
+    margin: auto;
+    text-align: center;
+    width: 60%;
+
+    a {
+      text-decoration: none;
+      color: $kilo-blue;
+    }
+  }
+
+  .artist-image {
+    margin: auto;
+    width: 85%;
+
+    @media screen and (max-width: $breakpoint) {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  img {
+    max-width: 700px;
+    width: 100%;
   }
 }
 
