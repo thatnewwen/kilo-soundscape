@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         
   root 'welcome#index'
   get '/artists', to: 'welcome#artists', as: 'artists'
+  get '/radio', to: 'welcome#radio', as: 'radio'
   
   get 'contact' => 'contact#index'
 

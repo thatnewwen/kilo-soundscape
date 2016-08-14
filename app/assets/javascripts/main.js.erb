@@ -1,44 +1,37 @@
 $(document).ready(function() {
-  const CLIENT_ID = '<%= ENV['CLIENT_ID'] %>';
+  let request = $.ajax({
+    url: '/radio'
+  });
+  request.done((response) => {
+    const tracks = response.tracks;
+    const randomNumber = Math.floor((Math.random() * tracks.length) + 1);
+    track = tracks[randomNumber];
+    trackId = track.id
+    trackName = track.title
+    trackUrl = track.permalink_url
 
-  axios.get(`https://api.soundcloud.com/users/14533601/tracks?client_id=${CLIENT_ID}`)
-    .then(function (response) {
-      // Store the length of the tracks
-      const trackLength = response.data.length;
+    SC.initialize({
+      client_id: '<%= ENV['CLIENT_ID'] %>'
+    });
 
-      // Pick a random number
-      const randomNumber = Math.floor((Math.random() * trackLength) + 1);
+    SC.stream('/tracks/' + trackId, function(sound) {
+      let playing = false;
 
-      // Return track id of random track
-      track = response.data[randomNumber]
-      console.log(track)
-      trackId = response.data[randomNumber].id
-      trackName = response.data[randomNumber].title
-      trackUrl = response.data[randomNumber].permalink_url
-    })
-    .then(function() {
-      SC.initialize({
-        client_id: '<%= ENV['CLIENT_ID'] %>'
+      $('.track-name').html(trackName);
+      $('.track-name').attr('href', trackUrl);
+
+      $('.radio').on('click', '#play-pause', function(event) {
+        event.preventDefault();
+        if (playing === true) {
+          sound.pause();
+          playing = false;
+          $(this).children('img').attr('src','assets/play.png');
+        } else {
+          sound.play()
+          playing = true;
+          $(this).children('img').attr('src','assets/pause.png');
+        }
       });
-
-      SC.stream('/tracks/' + trackId, function(sound) {
-        let playing = false;
-
-        $('.track-name').html(trackName);
-        $('.track-name').attr('href', trackUrl);
-
-        $('.radio').on('click', '#play-pause', function(event) {
-          event.preventDefault();
-          if (playing === true) {
-            sound.pause();
-            playing = false;
-            $(this).children('img').attr('src','assets/play.png');
-          } else {
-            sound.play()
-            playing = true;
-            $(this).children('img').attr('src','assets/pause.png');
-          }
-        });
-      });
-    })
+    });
+  });
 });
