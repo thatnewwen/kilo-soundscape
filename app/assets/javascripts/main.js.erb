@@ -1,5 +1,5 @@
 Track = function (trackId){
-  let currentTrack = '';
+  var currentTrack = '';
 
   SC.initialize({
     client_id: '<%= ENV['CLIENT_ID'] %>'
@@ -7,11 +7,9 @@ Track = function (trackId){
 
   SC.stream("http://api.soundcloud.com/tracks/" + trackId, {onfinish: function(){
     currentPlayingTrack.stop();
-    playing = false;
     currentTrack = rotation.nextTrack();
     currentPlayingTrack = new Track(currentTrack);
     currentPlayingTrack.play();
-    playing = true;
     $('#play-pause').children('img').attr('src','assets/pause.png');
   }}, function(sound){
     currentTrack = sound;
@@ -59,11 +57,11 @@ Rotation = function(tracks) {
 
 $(document).ready(function() {
   
-  let fetchTracks = function () {
-    let request = $.ajax({
+  fetchTracks = function () {
+    var request = $.ajax({
       url: '/radio'
     });
-    request.then((response) => {
+    request.then(function(response) {
       tracks = response.tracks;
       rotation = new Rotation(tracks);
       currentTrack = rotation.currentTrack();
@@ -77,11 +75,9 @@ $(document).ready(function() {
     event.preventDefault();
     if (playing === true) {
       currentPlayingTrack.pause();
-      playing = false;
       $(this).children('img').attr('src','assets/play.png');
     } else {
       currentPlayingTrack.play();
-      playing = true;
       $(this).children('img').attr('src','assets/pause.png');
     }
   });
@@ -89,13 +85,22 @@ $(document).ready(function() {
   $('.radio').on('click', '#next-song', function(event) {
     event.preventDefault();
     currentPlayingTrack.stop();
-    playing = false;
     currentTrack = rotation.nextTrack();
     currentPlayingTrack = new Track(currentTrack);
     currentPlayingTrack.play();
-    playing = true;
     $('#play-pause').children('img').attr('src','assets/pause.png');
   });
 
   fetchTracks();
+  
+  $('.navbar-nav').on('click', 'li', function(event) {
+    event.preventDefault();
+    var $url = $(this).children('a').attr('href');
+    var request = $.ajax({
+      url: $url
+    });
+    request.done(function(response) {
+      $('#body-container').html(response);
+    });
+  });
 });

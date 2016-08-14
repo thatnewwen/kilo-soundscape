@@ -1,10 +1,10 @@
 class WelcomeController < ApplicationController
   def index
-    render 'index'
+    render :layout => !request.xhr?
   end
 
   def artists
-    render 'artists'
+    render :layout => !request.xhr?
   end
 
   def radio
