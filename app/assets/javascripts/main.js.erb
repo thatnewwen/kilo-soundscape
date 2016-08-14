@@ -1,27 +1,36 @@
 Track = function (trackId){
-    let currentTrack = '';
+  let currentTrack = '';
 
-    SC.initialize({
-      client_id: '<%= ENV['CLIENT_ID'] %>'
-    });
+  SC.initialize({
+    client_id: '<%= ENV['CLIENT_ID'] %>'
+  });
 
-    SC.stream("http://api.soundcloud.com/tracks/" + trackId, {onfinish: function(){
-        console.log('track finished');
-    }}, function(sound){
-        currentTrack = sound;
-    });
+  SC.stream("http://api.soundcloud.com/tracks/" + trackId, {onfinish: function(){
+    currentPlayingTrack.stop();
+    playing = false;
+    currentTrack = rotation.nextTrack();
+    currentPlayingTrack = new Track(currentTrack);
+    currentPlayingTrack.play();
+    playing = true;
+    $('#play-pause').children('img').attr('src','assets/pause.png');
+  }}, function(sound){
+    currentTrack = sound;
+  });
 
-    this.play = function() {
-      currentTrack.play();
-    };
+  this.play = function() {
+    currentTrack.play();
+    playing = true;
+  };
 
-    this.pause = function() {
-      currentTrack.pause();
-    };
+  this.pause = function() {
+    currentTrack.pause();
+    playing = false;
+  };
 
-    this.stop = function() {
-      currentTrack.stop();
-    };
+  this.stop = function() {
+    currentTrack.stop();
+    playing = false;
+  };
 };
 
 Rotation = function(tracks) {
@@ -55,16 +64,11 @@ $(document).ready(function() {
       url: '/radio'
     });
     request.then((response) => {
-        tracks = response.tracks;
-        track = tracks[17];
-        trackId = track.id;
-        trackName = track.title;
-        trackUrl = track.permalink_url;
-    }).then(function() {
+      tracks = response.tracks;
       rotation = new Rotation(tracks);
       currentTrack = rotation.currentTrack();
       currentPlayingTrack = new Track(currentTrack.id);
-    }); 
+    }) 
   };
 
   playing = false;
@@ -83,17 +87,15 @@ $(document).ready(function() {
   });
 
   $('.radio').on('click', '#next-song', function(event) {
-      event.preventDefault();
-      currentPlayingTrack.stop();
-      currentTrack = rotation.nextTrack();
-      currentPlayingTrack = new Track(currentTrack);
-      currentPlayingTrack.play();
+    event.preventDefault();
+    currentPlayingTrack.stop();
+    playing = false;
+    currentTrack = rotation.nextTrack();
+    currentPlayingTrack = new Track(currentTrack);
+    currentPlayingTrack.play();
+    playing = true;
+    $('#play-pause').children('img').attr('src','assets/pause.png');
   });
 
   fetchTracks();
 });
-
-
-
-
-
