@@ -255,6 +255,75 @@ body {
   }
 }
 
+.about-container {
+  margin-bottom: 70px;
+  color: $kilo-blue;
+  width: 65%;
+  position: absolute;
+  right: 0px;
+  top: 10vh;
+
+  @media screen and (max-width: $breakpoint) {
+    width: 100%;
+    margin-bottom: 70px;
+    margin: 0 auto 70px auto;
+    position: absolute;
+    top: 180px;
+    left: 0;
+  }
+
+  h1 {
+    text-align: center;
+
+  }
+
+  .artist-info {
+    width: 65%;
+    text-align: justify;
+
+    @media screen and (max-width: $breakpoint) {
+      width: 75%;
+      margin: auto;
+    }
+  }
+
+  .artist-about {
+    width: 85%;
+    margin: 20px auto;
+
+    @media screen and (max-width: $breakpoint) {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  .artist-sites {
+    margin: auto;
+    text-align: center;
+    width: 60%;
+
+    a {
+      text-decoration: none;
+      color: $kilo-blue;
+    }
+  }
+
+  .artist-image {
+    margin: auto;
+    width: 85%;
+
+    @media screen and (max-width: $breakpoint) {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  img {
+    max-width: 700px;
+    width: 100%;
+  }
+}
+
 .about-div{
   padding-left: 50%;
   padding-right: 80px;
