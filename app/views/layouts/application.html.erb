@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>KiloSoundscape</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 
   <script src="//connect.soundcloud.com/sdk.js"></script>
@@ -12,12 +12,19 @@
 </head>
 <body>
 <nav class="navbar">
-  
+  <ul class="navbar-nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/artists">Artists</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/store">Store</a></li>
+  </ul>
 </nav>
 
 <img src="assets/logo.png" class="logo" alt="main-logo">
 
-<%= yield %>
+<div id="body-container">
+  <%= yield %>
+</div>
 
 <%= render 'layouts/radio' %>
 </body>
