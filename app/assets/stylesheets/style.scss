@@ -122,7 +122,7 @@ body {
   background: $kilo-blue;
   height: 50px;
   width: 100%;
-  padding-left: 90px;
+  padding-left: 130px;
   border-top: 1px solid white;
 
   a {
@@ -138,6 +138,22 @@ body {
     position: absolute;
     left: 30px;
     top: 15px;
+  }
+
+  #next-song {
+    top: 15px;
+    position: absolute;
+    left: 70px;
+  }
+
+  #soundcloud {
+    position: absolute;
+    top: 8px;
+    right: 150px;
+
+    img {
+      height: 35px;
+    }
   }
 
   img {

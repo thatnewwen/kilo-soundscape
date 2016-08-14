@@ -1,37 +1,99 @@
-$(document).ready(function() {
-  let request = $.ajax({
-    url: '/radio'
-  });
-  request.done((response) => {
-    const tracks = response.tracks;
-    const randomNumber = Math.floor((Math.random() * tracks.length) + 1);
-    track = tracks[randomNumber];
-    trackId = track.id
-    trackName = track.title
-    trackUrl = track.permalink_url
+Track = function (trackId){
+    let currentTrack = '';
 
     SC.initialize({
       client_id: '<%= ENV['CLIENT_ID'] %>'
     });
 
-    SC.stream('/tracks/' + trackId, function(sound) {
-      let playing = false;
-
-      $('.track-name').html(trackName);
-      $('.track-name').attr('href', trackUrl);
-
-      $('.radio').on('click', '#play-pause', function(event) {
-        event.preventDefault();
-        if (playing === true) {
-          sound.pause();
-          playing = false;
-          $(this).children('img').attr('src','assets/play.png');
-        } else {
-          sound.play()
-          playing = true;
-          $(this).children('img').attr('src','assets/pause.png');
-        }
-      });
+    SC.stream("http://api.soundcloud.com/tracks/" + trackId, {onfinish: function(){
+        console.log('track finished');
+    }}, function(sound){
+        currentTrack = sound;
     });
+
+    this.play = function() {
+      currentTrack.play();
+    };
+
+    this.pause = function() {
+      currentTrack.pause();
+    };
+
+    this.stop = function() {
+      currentTrack.stop();
+    };
+};
+
+Rotation = function(tracks) {
+  randomNumber = Math.floor((Math.random() * tracks.length));
+  
+  currentTrack = tracks[randomNumber];
+
+  this.currentTrack = function () {
+    $('.track-name').html(currentTrack.title);
+    $('.track-name').attr('href', currentTrack.permalink_url);
+    $('#soundcloud').attr('href', currentTrack.permalink_url);
+    return currentTrack;
+  };
+
+  this.nextTrack = function () {
+    randomNumber = Math.floor((Math.random() * tracks.length));
+    nextTrack = tracks[randomNumber];
+    nextTrackId = nextTrack.id;
+    currentTrack = nextTrackId;
+    $('.track-name').html(nextTrack.title);
+    $('.track-name').attr('href', nextTrack.permalink_url);
+    $('#soundcloud').attr('href', nextTrack.permalink_url);
+    return currentTrack
+  };
+};
+
+$(document).ready(function() {
+  
+  let fetchTracks = function () {
+    let request = $.ajax({
+      url: '/radio'
+    });
+    request.then((response) => {
+        tracks = response.tracks;
+        track = tracks[17];
+        trackId = track.id;
+        trackName = track.title;
+        trackUrl = track.permalink_url;
+    }).then(function() {
+      rotation = new Rotation(tracks);
+      currentTrack = rotation.currentTrack();
+      currentPlayingTrack = new Track(currentTrack.id);
+    }); 
+  };
+
+  playing = false;
+
+  $('.radio').on('click', '#play-pause', function(event) {
+    event.preventDefault();
+    if (playing === true) {
+      currentPlayingTrack.pause();
+      playing = false;
+      $(this).children('img').attr('src','assets/play.png');
+    } else {
+      currentPlayingTrack.play();
+      playing = true;
+      $(this).children('img').attr('src','assets/pause.png');
+    }
   });
+
+  $('.radio').on('click', '#next-song', function(event) {
+      event.preventDefault();
+      currentPlayingTrack.stop();
+      currentTrack = rotation.nextTrack();
+      currentPlayingTrack = new Track(currentTrack);
+      currentPlayingTrack.play();
+  });
+
+  fetchTracks();
 });
+
+
+
+
+
