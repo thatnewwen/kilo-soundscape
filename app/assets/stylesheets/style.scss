@@ -6,6 +6,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  font-family: 'Karla'
 }
 
 .logo {
@@ -29,17 +30,33 @@ body {
   margin-bottom: 5%;
 }
 
+.container {
+  position: relative;
+}
+
 .main-image {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 15vh;
+
+  .new {
+    text-transform: uppercase;
+    color: #21409A;
+    text-align: center;
+    z-index: 10;
+    position: absolute;
+    font-size: 18px;
+    top: -29px;
+    left: 53%;
+  }
 
   img {
-    position: absolute;
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 50%;
-    bottom: 50%;
     width: 50%;
+    position: absolute;
     max-width: 700px;
+    left: 30%;
   }
 }
 
@@ -97,6 +114,29 @@ body {
     border: 1px solid $kilo-blue;
     outline: none;
   }
+}
+
+.radio {
+  position: fixed;
+  bottom: 0;
+  background: $kilo-blue;
+  height: 50px;
+  width: 100%;
+
+  #start {
+    position: absolute;
+    left: 0;
+  }
+
+  #stop {
+    position: absolute;
+    left: 50px;
+  }
+
+  img {
+    height: 30px;
+  }
+
 
   .submit-button{
     font-family: 'Karla', sans-serif;
