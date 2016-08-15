@@ -10,13 +10,13 @@ Track = function (trackId){
     currentPlayingTrack.stop();
     currentTrack = rotation.nextTrack();
     currentPlayingTrack = new Track(currentTrack);
-    if (currentPlayingTrack.options.protocols[0] === 'rtmp') {
-      currentPlayingTrack.options.protocols.splice(0, 1);
-    }
     currentPlayingTrack.play();
     $('#play-pause').children('img').attr('src','assets/pause.png');
   }}, function(sound){
     currentTrack = sound;
+    if (currentTrack.options.protocols[0] === 'rtmp') {
+      currentTrack.options.protocols.splice(0, 1);
+    }
   });
 
   this.play = function() {
