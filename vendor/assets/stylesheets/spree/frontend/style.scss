@@ -1,5 +1,30 @@
+$breakpoint: 600px;
+
+
+body {
+  font-family: "Karla", sans-serif;
+}
+
 .container .column, .container .columns {
   float: none;
+}
+
+.container{
+  margin-left: 200px;
+  width: initial;
+  margin-right: 150px;
+
+  @media screen and (max-width: $breakpoint) {
+    margin-left: 30px;
+    width: initial;
+    margin-right: 30px;
+    margin-top: 100px;
+  }
+}
+
+nav #main-nav-bar {
+  margin-top: 50px;
+  border-bottom: none;
 }
 
 ul#products li {
@@ -7,7 +32,7 @@ ul#products li {
   display: flex;
 	text-align: left;
   align-items: center;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Karla', san-serif;
 
 }
 
@@ -34,7 +59,8 @@ ul#products li .product-image {
 .product-description{
   opacity: 0.0;
   color: grey;
-  transition: opacity 1s ease;
+  transition: opacity 0.5s ease;
+  margin-right: 10px;
 }
 
 .home-product:hover .product-description{
@@ -80,4 +106,56 @@ ul#products li a.info {
 .product-item{
   position: absolute;
   font-size: 20px;
+  color: #21409a;
+  text-transform: uppercase;
+}
+
+nav #main-nav-bar li#link-to-cart a {
+  font-family: 'Karla', sans-serif;
+  color: #21409a;
+}
+
+ul#products li .price {
+  color: #21409a;
+}
+
+nav #main-nav-bar li#link-to-cart{
+  background: none;
+}
+
+span.price.selling, #checkout-summary table tr[data-hook="item_total"] td:last-child strong.selling, #checkout-summary table .selling#summary-order-total, #order_details td.price span.selling, #order_details td.total span.selling, #order_summary td.price span.selling, #order_summary td.total span.selling, table#cart-detail tbody#line_items tr td[data-hook="cart_item_price"], table#cart-detail tbody#line_items tr td[data-hook="cart_item_total"], div[data-hook="inside_cart_form"] #subtotal span.selling.order-total{
+  color: #21409a;
+
+}
+
+input[type="submit"], input[type="button"], input[type="reset"], button, a.button {
+  background-color: lightgray;
+  text-transform: uppercase;
+  border: none;
+}
+
+@media only screen and (max-width: 767px){
+  #update-cart #subtotal, #update-cart .links {
+    width: 100%;
+  }
+}
+
+#checkout-bar{
+  margin-bottom: 20px;
+  display: block;
+  position: relative;
+  width: 100%;
+
+  input{
+    text-transform: uppercase;
+    width: 105px;
+  }
+}
+
+#checkout-summary {
+  float: left;
+}
+
+.row{
+  margin-left: 10px;
 }
