@@ -5,7 +5,7 @@ Track = function (trackId){
     client_id: '<%= ENV['CLIENT_ID'] %>'
   });
 
-  SC.stream("http://api.soundcloud.com/tracks/" + trackId, {onfinish: function(){
+  SC.stream("https://api.soundcloud.com/tracks/" + trackId, {onfinish: function(){
     currentPlayingTrack.stop();
     currentTrack = rotation.nextTrack();
     currentPlayingTrack = new Track(currentTrack);
