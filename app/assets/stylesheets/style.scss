@@ -15,8 +15,8 @@ body {
   background: url(logo.png);
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 999;
-  width: 100%;
+/*  z-index: 999;
+*/  width: 100%;
   position: fixed;
   height: 60%;
   max-height: 300px;
@@ -145,10 +145,21 @@ body {
   font-family: 'EB Garamond', serif;
   color: $kilo-blue;
   letter-spacing: 2px;
+  margin-top: 0px;
 }
 
-.contact-form{
 
+.contact-form{
+  padding-bottom: 50px;
+
+  .submit-button{
+    width: 468px;
+    color: white;
+
+    @media screen and (max-width: $breakpoint) {
+      width: 268px;
+    }
+  }
 
   input{
     display: block;
@@ -159,7 +170,11 @@ body {
     border: 1px solid lightgray;
     transition: border 1s ease;
     font-family: 'Karla', sans-serif;
+    text-transform: uppercase;
 
+    @media screen and (max-width: $breakpoint) {
+      width: 250px;
+    }
   }
 
   input:focus{
@@ -177,6 +192,9 @@ body {
     height: 100px;
     transition: border 1s ease;
 
+    @media screen and (max-width: $breakpoint) {
+      width: 250px;
+    }
   }
 
   textarea:focus{
@@ -329,7 +347,15 @@ body {
   padding-right: 80px;
   padding-top: 80px;
   text-align: justify;
+
+  @media screen and (max-width: $breakpoint) {
+    padding-left: 0%;
+    padding-top: 40%;
+    padding-right: 55px;
+  }
 }
+
+
 
 .contact-div{
   width: 100%;

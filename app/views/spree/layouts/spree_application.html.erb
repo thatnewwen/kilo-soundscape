@@ -7,11 +7,22 @@
   <head data-hook="inside_head">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Karla" rel="stylesheet">
-
+    <title>KiloSoundscape</title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= csrf_meta_tags %>
 
     <%= render :partial => 'spree/shared/head' %>
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
+  <nav class="navbar">
+    <ul class="navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/artists">Artists</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/store">Store</a></li>
+    </ul>
+  </nav>
+  <div class="logo"></div>
 
     <div class="container">
 
@@ -37,5 +48,6 @@
     </div>
 
     <%= render :partial => 'spree/shared/google_analytics' %>
+
   </body>
 </html>
