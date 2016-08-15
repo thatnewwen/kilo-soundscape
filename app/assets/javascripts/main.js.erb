@@ -6,6 +6,7 @@ Track = function (trackId){
   });
 
   SC.stream("http://api.soundcloud.com/tracks/" + trackId, {onfinish: function(){
+
     currentPlayingTrack.stop();
     currentTrack = rotation.nextTrack();
     currentPlayingTrack = new Track(currentTrack);
