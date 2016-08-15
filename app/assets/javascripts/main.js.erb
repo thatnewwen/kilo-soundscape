@@ -6,6 +6,11 @@ Track = function (trackId){
   });
 
   SC.stream("https://api.soundcloud.com/tracks/" + trackId, {onfinish: function(){
+    if (scPlayer.options.protocols[0] === 'rtmp') {
+      scPlayer.options.protocols.splice(0, 1);
+    }
+    scPlayer.play();
+
     currentPlayingTrack.stop();
     currentTrack = rotation.nextTrack();
     currentPlayingTrack = new Track(currentTrack);
