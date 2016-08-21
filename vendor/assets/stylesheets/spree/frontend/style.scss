@@ -5,6 +5,15 @@ body {
   font-family: "Karla", sans-serif;
 }
 
+.navbar li a {
+  font-weight: bold;
+}
+
+.radio .artist-name {
+  font-weight: bold;
+  font-family: 'Garamond', serif;
+}
+
 .container .column, .container .columns {
   float: none;
 }
@@ -158,4 +167,8 @@ input[type="submit"], input[type="button"], input[type="reset"], button, a.butto
 
 .row{
   margin-left: 10px;
+}
+
+p {
+  padding: 0px;
 }
