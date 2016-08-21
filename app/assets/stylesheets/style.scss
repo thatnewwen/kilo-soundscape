@@ -215,7 +215,7 @@ body {
   .song {
     margin-top: 13px;
   }
-  
+
   a {
     text-decoration: none;
     font-size: 16px;
@@ -347,15 +347,22 @@ body {
 }
 
 .about-div{
-  padding-left: 50%;
+  padding-left: 40%;
   padding-right: 80px;
   padding-top: 80px;
   text-align: justify;
+  text-align-last: justify;
+  font-family: "Times New Roman", Serif;
+
+  span{
+    display: block;
+  }
 
   @media screen and (max-width: $breakpoint) {
     padding-left: 0%;
     padding-top: 40%;
     padding-right: 55px;
+    display: inline;
   }
 }
 
