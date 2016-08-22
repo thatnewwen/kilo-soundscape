@@ -1,5 +1,6 @@
 $kilo-blue: #21409A;
 $kilo-cream: #EEEBE4;
+$breakpoint-waves: 750px;
 $breakpoint: 600px;
 $breakpoint-small: 400px;
 
@@ -15,8 +16,7 @@ body {
   background: url(logo.png);
   background-size: contain;
   background-repeat: no-repeat;
-/*  z-index: 999;
-*/  width: 100%;
+  width: 100%;
   position: fixed;
   height: 60%;
   max-height: 300px;
@@ -278,7 +278,8 @@ body {
   color: $kilo-blue;
   width: 65%;
   position: absolute;
-  right: 0px;
+  // right: 0px;
+  left: 200px;
   top: 10vh;
 
   @media screen and (max-width: $breakpoint) {
@@ -355,7 +356,22 @@ body {
   }
 }
 
+#waves {
+  width: 100%;
+  height: 100%;
 
+  @media screen and (max-width: $breakpoint-waves) {
+    display: none
+  }
+}
+
+.mobile {
+  display: none;
+
+  @media screen and (max-width: $breakpoint-waves) {
+    display: block;
+  }
+}
 
 .contact-div{
   width: 100%;
