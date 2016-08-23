@@ -362,8 +362,8 @@ body {
 
   .mark {
     position: relative;
-    top: -280px;
-    left: 140px;
+    top: -300px;
+    left: 135px;
     width: 55%;
 
     .artist-about, .artist-sites {
@@ -371,7 +371,19 @@ body {
     }
   }
 
-  .artist-marker {
+  .artist-mark {
+    padding-bottom: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .artist-information {
+    display: none;
+  }
+
+  .dot {
     height: 12px;
     width: 12px;
     background: $kilo-blue;

@@ -104,7 +104,7 @@ $(document).ready(function() {
     var waves = new SineWaves({
       el: document.getElementById('waves'),
 
-      speed: 1,
+      speed: .35,
 
       width: function() {
         var width = $(window).width();
@@ -147,8 +147,60 @@ $(document).ready(function() {
           amplitude: -100,
           wavelength: 100,
           segmentLength: 10,
-        }
+        },
+        // {
+        //   timeModifier: 1,
+        //   lineWidth: 0.25,
+        //   amplitude: -50,
+        //   wavelength: 50,
+        //   segmentLength: 10,
+        // },
+        // {
+        //   timeModifier: 1,
+        //   lineWidth: .25,
+        //   amplitude: -25,
+        //   wavelength: 25
+        // },
+        {
+          timeModifier: 1,
+          lineWidth: .25,
+          amplitude: -10,
+          wavelength: 20,
+        },
       ],
+
+      // waves: [
+      //   {
+      //     timeModifier: 4,
+      //     lineWidth: 1,
+      //     amplitude: -25,
+      //     wavelength: 25
+      //   },
+      //   {
+      //     timeModifier: 2,
+      //     lineWidth: 2,
+      //     amplitude: -50,
+      //     wavelength: 50
+      //   },
+      //   {
+      //     timeModifier: 1,
+      //     lineWidth: 1,
+      //     amplitude: -100,
+      //     wavelength: 100
+      //   },
+      //   {
+      //     timeModifier: 0.5,
+      //     lineWidth: 1,
+      //     amplitude: -200,
+      //     wavelength: 200
+      //   },
+      //   {
+      //     timeModifier: 0.25,
+      //     lineWidth: 2,
+      //     amplitude: -400,
+      //     wavelength: 400
+      //   }
+      // ],
 
       initialize: function () {
 
@@ -186,6 +238,10 @@ $(document).ready(function() {
         soundWave();
       }
     });
+  });
+
+  $('#body-container').on('click', '.artist-mark', function () {
+      $(this).next('.artist-information').slideToggle('slow');
   });
 
   if (window.location.pathname == '/artists') {
