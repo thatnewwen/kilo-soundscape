@@ -1,9 +1,3 @@
-/* @flow */
-/************************************************
- * @file  Constants
- * @author  Isaac Suttell
- ************************************************/
-
 /**
  * For radian conversion
  *
@@ -28,17 +22,6 @@ var PI2 = Math.PI * 2;
  */
 var HALFPI = Math.PI / 2;
 
-/* @flow */
-/************************************************
- * @file  Left to right easing functions
- * @author Isaac Suttell
- ************************************************/
-
-/**
- * This holds all of the easing objects and can be added to by the user
- *
- * @type    {Object}
- */
 var Ease = {};
 
 /**
@@ -92,17 +75,6 @@ Ease.sineinout = function(percent, amplitude) {
   return amplitude * (Math.sin(percent * PI2 - HALFPI) + 1) * 0.5;
 };
 
-/* @flow */
-/************************************************
- * @file  Sine Wave functions
- * @author Isaac Suttell
- ************************************************/
-
-/**
- * Holds the different types of waves
- *
- * @type    {Object}
- */
 var Waves = {};
 
 /**
@@ -165,17 +137,6 @@ Waves.triangle = function(x) {
   return Math.abs(Waves.sawtooth(x));
 };
 
-/* @flow */
-/************************************************
- * @file  General utility functions
- * @author  Isaac Suttell
- ************************************************/
-
-/**
- * Utilities wrapper
- *
- * @type    {Object}
- */
 var Utilities = {};
 
 /**
@@ -296,17 +257,6 @@ var getFn = Utilities.getFn = function(obj, name, def) {
   }
 };
 
-/* @flow */
-/************************************************
- * @file  Constructor and animation controller
- * @author  Isaac Suttell
- ************************************************/
-
-/**
- * Generates multiple customizable animated sines waves
- * using a canvas element. Supports retina displays and
- * limited mobile support
- */
 function SineWaves(options) {
   // Save a reference
   this.options = Utilities.defaults(this.options, options);
