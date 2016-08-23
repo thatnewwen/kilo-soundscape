@@ -116,6 +116,7 @@ $(document).ready(function() {
         return height * 0.65;
       },
 
+
       wavesWidth: '95%',
 
       ease: 'SineInOut',
@@ -179,6 +180,12 @@ $(document).ready(function() {
       }
     });
   }
+
+  var getDimensions = function() {
+    var height = $('#waves').css('height');
+    height = (parseInt(height) / 2) + 10;
+    $('.mark').css('top', '-' + height + 'px');
+  }
   
   $('.navbar-nav').on('click', 'li', function(event) {
     event.preventDefault();
@@ -190,6 +197,7 @@ $(document).ready(function() {
       $('#body-container').html(response);
       if ($url == '/artists') {
         soundWave();
+        getDimensions();
       }
     });
   });
@@ -200,6 +208,14 @@ $(document).ready(function() {
 
   if (window.location.pathname == '/artists') {
     soundWave();
+    getDimensions();
   }
+
+
+  $( window ).resize(function() {
+    getDimensions()
+  });
+
+  // setInterval(getDimensions, 1);
 
 });
