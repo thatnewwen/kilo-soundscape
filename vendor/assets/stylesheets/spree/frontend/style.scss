@@ -5,6 +5,15 @@ body {
   font-family: "Karla", sans-serif;
 }
 
+.navbar li a {
+  font-weight: bold;
+}
+
+.radio .artist-name {
+  font-weight: bold;
+  font-family: 'Garamond', serif;
+}
+
 .container .column, .container .columns {
   float: none;
 }
@@ -31,6 +40,7 @@ ul#products li {
   margin: 20px 0;
   display: flex;
 	text-align: left;
+  font-weight: normal;
   align-items: center;
   font-family: 'Karla', san-serif;
 
@@ -61,6 +71,14 @@ ul#products li .product-image {
   color: grey;
   transition: opacity 0.5s ease;
   margin-right: 10px;
+}
+
+.product-description div{
+  font-family: "Times New Roman", serif;
+}
+
+#product-description div{
+  font-family: "Times New Roman", serif;
 }
 
 .home-product:hover .product-description{
@@ -158,4 +176,20 @@ input[type="submit"], input[type="button"], input[type="reset"], button, a.butto
 
 .row{
   margin-left: 10px;
+}
+
+p {
+  padding: 0px;
+}
+
+.line-item-description{
+  font-family: "Times New Roman", serif;
+}
+
+.cart-subtotal, .cart-total{
+  background: #242369;
+}
+
+a{
+  color: #242369;
 }
