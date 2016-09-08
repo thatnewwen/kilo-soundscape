@@ -1,104 +1,108 @@
-Track = function (trackId){
-  var currentTrack = '';
+// Track = function (trackId){
+//   var currentTrack = new Audio('/naturesound.mp3')
 
-  SC.initialize({
-    client_id: '<%= ENV['CLIENT_ID'] %>'
-  });
+  // SC.initialize({
+  //   client_id: '<%= ENV['CLIENT_ID'] %>'
+  // });
 
-  SC.stream('tracks/' + trackId)
-    .then(function(sound) {
-    if (sound.options.protocols[0] === 'rtmp') {
-      sound.options.protocols.splice(0, 1);
-    }
-    currentTrack = sound;
-    currentTrack.play();
-    currentTrack.on('finish', function(sound) {
-      currentPlayingTrack.stop();
-      currentTrack = rotation.nextTrack();
-      currentPlayingTrack = new Track(currentTrack);
-      $('#play-pause').children('img').attr('src','assets/pause.png');
-      playing = true;
-    })
-    $('#play-pause').children('img').attr('src','assets/pause.png');
-    playing = true;
-  });
+  // SC.stream('tracks/' + trackId)
+  //   .then(function(sound) {
+  //   if (sound.options.protocols[0] === 'rtmp') {
+  //     sound.options.protocols.splice(0, 1);
+  //   }
+  //   currentTrack = sound;
+  //   currentTrack.play();
+  //   currentTrack.on('finish', function(sound) {
+  //     currentPlayingTrack.stop();
+  //     currentTrack = rotation.nextTrack();
+  //     currentPlayingTrack = new Track(currentTrack);
+  //     $('#play-pause').children('img').attr('src','assets/pause.png');
+  //     playing = true;
+  //   })
+  //   $('#play-pause').children('img').attr('src','assets/pause.png');
+  //   playing = true;
+  // });
 
-  this.play = function() {
-    currentTrack.play();
-    playing = true;
-  };
+//   this.play = function() {
+//     currentTrack.play();
+//     playing = true;
+//   };
 
-  this.pause = function() {
-    currentTrack.pause();
-    playing = false;
-  };
+//   this.pause = function() {
+//     currentTrack.pause();
+//     playing = false;
+//   };
 
-  this.stop = function() {
-    currentTrack.pause();
-    playing = false;
-  };
-};
+//   this.stop = function() {
+//     currentTrack.pause();
+//     playing = false;
+//   };
+// };
 
-Rotation = function(tracks) {
-  randomNumber = Math.floor((Math.random() * tracks.length));
+// Rotation = function(tracks) {
+//   randomNumber = Math.floor((Math.random() * tracks.length));
   
-  currentTrack = tracks[randomNumber];
+//   currentTrack = tracks[randomNumber];
 
-  this.currentTrack = function () {
-    $('.track-name').html(currentTrack.title);
-    $('.track-name').attr('href', currentTrack.permalink_url);
-    $('#soundcloud').attr('href', currentTrack.permalink_url);
-    return currentTrack;
-  };
+//   this.currentTrack = function () {
+//     $('.track-name').html(currentTrack.title);
+//     $('.track-name').attr('href', currentTrack.permalink_url);
+//     $('#soundcloud').attr('href', currentTrack.permalink_url);
+//     return currentTrack;
+//   };
 
-  this.nextTrack = function () {
-    randomNumber = Math.floor((Math.random() * tracks.length));
-    nextTrack = tracks[randomNumber];
-    nextTrackId = nextTrack.id;
-    currentTrack = nextTrackId;
-    $('.track-name').html(nextTrack.title);
-    $('.track-name').attr('href', nextTrack.permalink_url);
-    $('#soundcloud').attr('href', nextTrack.permalink_url);
-    return currentTrack
-  };
-};
+//   this.nextTrack = function () {
+//     randomNumber = Math.floor((Math.random() * tracks.length));
+//     nextTrack = tracks[randomNumber];
+//     nextTrackId = nextTrack.id;
+//     currentTrack = nextTrackId;
+//     $('.track-name').html(nextTrack.title);
+//     $('.track-name').attr('href', nextTrack.permalink_url);
+//     $('#soundcloud').attr('href', nextTrack.permalink_url);
+//     return currentTrack
+//   };
+// };
 
 $(document).ready(function() {
 
-  fetchTracks = function () {
-    var request = $.ajax({
-      url: '/radio'
-    });
-    request.then(function(response) {
-      tracks = response.tracks;
-      rotation = new Rotation(tracks);
-      currentTrack = rotation.currentTrack();
-      currentPlayingTrack = new Track(currentTrack.id);
-    }) 
-  };
+  // fetchTracks = function () {
+  //   var request = $.ajax({
+  //     url: '/radio'
+  //   });
+  //   request.then(function(response) {
+  //     tracks = response.tracks;
+  //     rotation = new Rotation(tracks);
+  //     currentTrack = rotation.currentTrack();
+  //     currentPlayingTrack = new Track(currentTrack.id);
+  //   }) 
+  // };
+  var currentTrack = new Audio('/app/assets/sounds/naturesound.mp3')
 
   playing = false;
 
   $('.radio').on('click', '#play-pause', function(event) {
+
     event.preventDefault();
     if (playing === true) {
-      currentPlayingTrack.pause();
+      currentTrack.pause();
       $(this).children('img').attr('src','assets/play.png');
+      playing = false;
     } else {
-      currentPlayingTrack.play();
+      currentTrack.play();
       $(this).children('img').attr('src','assets/pause.png');
+      playing = true;
     }
   });
 
   $('.radio').on('click', '#next-song', function(event) {
     event.preventDefault();
-    currentPlayingTrack.stop();
-    currentTrack = rotation.nextTrack();
-    currentPlayingTrack = new Track(currentTrack);
+    currentTrack.stop();
+    // currentTrack = rotation.nextTrack();
+    currentTrack = new Track(currentTrack);
     $('#play-pause').children('img').attr('src','assets/pause.png');
   });
 
-  fetchTracks();
+  // fetchTracks();
 
   var soundWave = function () {
     var waves = new SineWaves({

@@ -2,11 +2,24 @@ $breakpoint: 600px;
 
 
 body {
-  font-family: "Karla", sans-serif;
+  font-family: 'Garamond', serif;
+}
+
+#header{
+  text-transform: lowercase;
+}
+
+#wrapper{
+  text-transform: lowercase;
+}
+
+nav #main-nav-bar li#link-to-cart a {
+  text-transform: lowercase; 
 }
 
 .navbar li a {
   font-weight: bold;
+  font-family: 'Karla Regular', sans-serif;
 }
 
 .radio .artist-name {
@@ -44,6 +57,11 @@ ul#products li {
   align-items: center;
   font-family: 'Karla', san-serif;
 
+  @media screen and (max-width: $breakpoint) {
+    padding-left: 0px !important;
+    flex-direction: row !important;
+    padding-bottom: 20px;
+  }
 }
 
 ul#products li .product-image {
@@ -83,6 +101,10 @@ ul#products li .product-image {
 
 .home-product:hover .product-description{
   opacity: 1.0;
+
+  @media screen and (max-width: $breakpoint) {
+    opacity: 0.0;
+  }
 }
 
 .home-product:hover .product-image img{
@@ -125,7 +147,6 @@ ul#products li a.info {
   position: absolute;
   font-size: 20px;
   color: #21409a;
-  text-transform: uppercase;
 }
 
 nav #main-nav-bar li#link-to-cart a {
@@ -156,6 +177,8 @@ input[type="submit"], input[type="button"], input[type="reset"], button, a.butto
   #update-cart #subtotal, #update-cart .links {
     width: 100%;
   }
+
+
 }
 
 #checkout-bar{
@@ -192,4 +215,8 @@ p {
 
 a{
   color: #242369;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
 }
