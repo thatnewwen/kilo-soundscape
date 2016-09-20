@@ -37,7 +37,7 @@ nav #main-nav-bar li#link-to-cart a {
   margin-right: 150px;
 
   @media screen and (max-width: $breakpoint) {
-    margin-left: 30px;
+    margin-left: 0px;
     width: initial;
     margin-right: 30px;
     margin-top: 100px;
@@ -168,9 +168,18 @@ span.price.selling, #checkout-summary table tr[data-hook="item_total"] td:last-c
 }
 
 input[type="submit"], input[type="button"], input[type="reset"], button, a.button {
-  background-color: lightgray;
+  padding: 9px;
+  font-size: 12px;
+  transition: border 1s ease;
+  font-family: 'Karla', sans-serif;
   text-transform: uppercase;
-  border: none;
+  border: 1px solid lightgray;
+  background-color: lightgray;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, button:hover, a.button:hover{
+  background-color: lightgray;
+  border-color: #242369;
 }
 
 @media only screen and (max-width: 767px){
@@ -179,6 +188,11 @@ input[type="submit"], input[type="button"], input[type="reset"], button, a.butto
   }
 
 
+}
+
+#checkout-bar input{
+  width: 111px !important;
+  padding: 9px;
 }
 
 #checkout-bar{
@@ -219,4 +233,27 @@ a{
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
+}
+
+.product-section-title{
+  text-transform: lowercase;
+}
+
+#product-variants ul li{
+  list-style-type: none;
+}
+
+#footer{
+  display: none;
+}
+
+span.price.selling, #checkout-summary table tr[data-hook="item_total"] td:last-child strong.selling, #checkout-summary table .selling#summary-order-total, #order_details td.price span.selling, #order_details td.total span.selling, #order_summary td.price span.selling, #order_summary td.total span.selling, table#cart-detail tbody#line_items tr td[data-hook="cart_item_price"], table#cart-detail tbody#line_items tr td[data-hook="cart_item_total"], div[data-hook="inside_cart_form"] #subtotal span.selling.order-total{
+  font-family: 'Karla', sans-serif;
+}
+
+.cart-subtotal td h5, .cart-total td h5{
+      color: #fff;
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
 }
