@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem "solidus_gateway"
 
 gem "aws-sdk", "< 2.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -28,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem "solidus_braintree"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
