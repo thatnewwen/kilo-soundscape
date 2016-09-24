@@ -1,4 +1,4 @@
-$kilo-blue: #242369;
+$kilo-blue: #1d1c58;
 $kilo-cream: #EEEBE4;
 $breakpoint-waves: 600px;
 $breakpoint: 600px;
@@ -145,6 +145,7 @@ h1 {
 }
 
 .contact-title{
+  font-size: 1.25em;
   text-align: left;
   font-family: 'EB Garamond', serif;
   color: $kilo-blue;
@@ -170,7 +171,7 @@ h1 {
     padding: 8px;
     margin: 10px 0;
     width: 400px;
-    font-size: 12px;
+    font-size: 10px;
     border: 1px solid lightgray;
     transition: border 1s ease;
     font-family: 'Karla', sans-serif;
@@ -192,7 +193,7 @@ h1 {
     border: 1px solid lightgray;
     padding: 8px;
     width: 400px;
-    font-size: 12px;
+    font-size: 10px;
     height: 100px;
     transition: border 1s ease;
 
@@ -294,7 +295,7 @@ h1 {
   // right: 0px;
   left: 200px;
   top: 10vh;
-  font-size: 14px;
+  font-size: 12px;
   height: 500px;
 
 
@@ -365,6 +366,7 @@ h1 {
 }
 
 .about-div{
+  font-size: 12px;
   padding-left: 40%;
   padding-right: 80px;
   padding-top: 80px;
