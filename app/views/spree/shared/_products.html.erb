@@ -31,7 +31,7 @@
         <% cache(@taxon.present? ? [I18n.locale, current_pricing_options, @taxon, product] : [I18n.locale, current_pricing_options, product]) do %>
           <div class="product-image">
             <%= link_to image_tag(product.display_image.attachment(:product), itemprop: "image"), url, itemprop: 'url' %>
-            <span class="product-item">item 00<%= $counter %></span>
+            <span class="product-item">00<%= $counter %></span>
             <% $counter = $counter + 1 %>
           </div>
           <div class="product-description">
