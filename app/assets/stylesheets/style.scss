@@ -141,6 +141,10 @@ h1 {
   flex-direction: column;
   left: 20%;
   position: relative;
+
+  @media screen and (max-width: $breakpoint) {
+    left: 0px;
+  }
 }
 
 .contact-title{
@@ -380,8 +384,8 @@ h1 {
 
   @media screen and (max-width: $breakpoint) {
     padding-left: 0%;
-    padding-top: 40%;
-    padding-right: 55px;
+    padding-top: 0px;
+    padding-right: 0px;
     display: inline;
   }
 }
@@ -437,6 +441,10 @@ h1 {
 .contact-div{
   width: 100%;
   padding-bottom: 20px;
+
+  @media screen and (max-width: $breakpoint) {
+    width: inherit;
+  }
 }
 
 .store-logo{
