@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/solidusio-contrib/solidus_paypal_express.git
+  revision: 31ae32c2ab405904c9ba61e73c6bea906fae32ca
+  specs:
+    spree_paypal_express (2.0.3)
+      paypal-sdk-merchant (= 1.117.2)
+      solidus_core (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -164,6 +172,11 @@ GEM
       mime-types
     paranoia (2.1.5)
       activerecord (~> 4.0)
+    paypal-sdk-core (0.3.4)
+      multi_json (~> 1.0)
+      xml-simple
+    paypal-sdk-merchant (1.117.2)
+      paypal-sdk-core (~> 0.3.0)
     pg (0.18.4)
     pkg-config (1.1.7)
     polyamorous (1.3.1)
@@ -342,6 +355,7 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    xml-simple (1.1.5)
 
 PLATFORMS
   ruby
@@ -362,6 +376,7 @@ DEPENDENCIES
   solidus_braintree
   solidus_gateway
   soundcloud
+  spree_paypal_express!
   spring
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
