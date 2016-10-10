@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 gem "solidus_gateway"
+gem 'spree_paypal_express', github: 'solidusio-contrib/solidus_paypal_express'
+
 
 gem "aws-sdk", "< 2.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
