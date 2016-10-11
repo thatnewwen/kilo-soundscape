@@ -1,4 +1,4 @@
-class Spree::Base < ActiveRecord::Base
+  class Spree::Base < ActiveRecord::Base
   include Spree::Preferences::Preferable
   serialize :preferences, Hash
 
