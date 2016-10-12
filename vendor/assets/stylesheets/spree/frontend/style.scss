@@ -102,6 +102,10 @@ ul#products li .product-image {
   color: grey;
   transition: opacity 0.5s ease;
   margin-right: 10px;
+
+  @media screen and (max-width: $breakpoint) {
+    display: none;
+  }
 }
 
 .product-description div{
